@@ -12,7 +12,7 @@ CREATE TABLE professors(
     professor_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    department(50)
+    department VARCHAR(50)
 );
 
 -- Table for courses
@@ -20,13 +20,13 @@ CREATE TABLE courses(
     course_id SERIAL PRIMARY KEY,
     course_name VARCHAR(100),
     course_description VARCHAR(300),
-    FOREIGN KEY (professor_id) REFERENCES professors(professor_id)
+     professor_id INT REFERENCES professors(professor_id)
 );
 
 -- Table for enrollments
 CREATE TABLE enrollments(
-    FOREIGN KEY (student_id) REFERENCES students(student_id),
-    FOREIGN KEY (course_id) REFERENCES courses(course_id),
+    student_id INT REFERENCES students(student_id),
+    course_id INT REFERENCES courses(course_id),
     PRIMARY KEY (student_id, course_id),
     enrollment_date DATE
 );
@@ -49,7 +49,7 @@ INSERT INTO professors (first_name, last_name, department) VALUES
 -- inserting data for courses table
 INSERT INTO courses (course_name, course_description, professor_id) VALUES 
 ('Database', 'Learn about databases', 1),
-('Physics 101', 'Learn about Physics', 2),
+('Physics 101', 'Learn about Physics', 4),
 ('Python Programming', 'Learn about Python', 3);
 
 -- inserting data for enrollments table
